@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import Home from '../views/home/'
 import Layout from '@/views/Layout.vue'
 
 Vue.use(VueRouter)
@@ -40,7 +40,10 @@ const routes = [
 const router = new VueRouter({
   mode: 'hash',
   base: process.env.BASE_URL,
-  routes
+  routes,
+  // linkActiveClass 设置 链接激活时使用的 CSS 类名。
+  // 默认值可以通过路由的构造选项 linkActiveClass 来全局配置
+  linkActiveClass: 'active'
 })
 
 export default router
