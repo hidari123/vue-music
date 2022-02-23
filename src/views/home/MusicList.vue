@@ -3,8 +3,8 @@
 -->
 <template>
   <div>
-      <music-list-view title="推荐歌单" :recommend="recommend"/>
-      <music-list-view title="推荐歌曲" :musiclist="musiclist"/>
+      <music-list-view type='1' title="推荐歌单" :musiclist="recommend"/>
+      <music-list-view type='4' title="推荐歌曲" :musiclist="music"/>
 
   </div>
 </template>
@@ -15,7 +15,7 @@ export default {
   name: 'MusicList',
   data () {
     return {
-      musiclist: [],
+      music: [],
       recommend: []
     }
   },
@@ -28,8 +28,8 @@ export default {
       console.log(this.recommend)
     })
     this.$api.getMusic().then(res => {
-      this.musiclist = res.result
-      console.log(this.musiclist)
+      this.music = res.result
+      console.log(this.music)
     })
   }
 }

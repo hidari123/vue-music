@@ -1,6 +1,9 @@
 import { get } from '../utils/request'
 
 const api = {
+  getMusicList (params) {
+    return get('baidu.ting.billboard.billList', params)
+  },
   /**
      * 获取推荐歌单
      */

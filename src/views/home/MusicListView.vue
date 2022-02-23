@@ -6,20 +6,20 @@
       <div class="block-padding">
           <div class="title">
               <h3>{{ title }}</h3>
-              <a href="#">更多</a>
+              <router-link :to="`/more/${type}`">更多</router-link>
           </div>
           <!-- 只有中间的需要边距 对3取余 不等于1的 去掉边距 -->
           <div class="list clearfix">
               <div class="item"
               :class="{ 'clear-padding': index%3 !== 1 }"
-              v-for="(item,index) in musiclist"
+              v-for="(item,index) in musiclist.slice(0,6)"
               :key="index"
               >
                   <div class="img-warpper">
                     <img :src="item.picUrl" alt />
                   </div>
                   <div class="main">{{ cutString(item.name) }}</div>
-                  <div class="gary">{{ cutString(item.song.artists[0].name) }}</div>
+                  <div class="gary">{{ cutString(item.id) }}</div>
               </div>
           </div>
       </div>
@@ -46,6 +46,10 @@ export default {
       }
     },
     title: {
+      type: String,
+      default: ''
+    },
+    type: {
       type: String,
       default: ''
     }
