@@ -49,6 +49,11 @@ const routes = [
     path: '/player/:id/:name/:image',
     name: 'Player',
     component: () => import('../views/Player.vue')
+  },
+  {
+    path: '/dj/:id',
+    name: 'DJMore',
+    component: () => import('../views/Home/DJMore.vue')
   }
 ]
 

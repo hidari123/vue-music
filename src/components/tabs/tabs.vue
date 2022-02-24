@@ -24,6 +24,8 @@ export default {
       this.$emit('callback', index)
     }
   },
+  //   render 渲染的时候 插槽直接使用 this.$slots.default
+  //   插槽是读取嵌套规则的结构
   render () {
     return (
       <div>

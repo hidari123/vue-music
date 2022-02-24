@@ -1,14 +1,21 @@
 <template>
-<div>
+<div class="tabs">
     <tabs :defaultActiveIndex='defaultActiveIndex' @callback='updateIndex'>
-        <tab label='tab1' index="1">
-            <div>content1</div>
-        </tab>
-        <tab label='tab2' index="2">
-            <div>content2</div>
-        </tab>
-        <tab label='tab3' index="3">
-            <div>content3</div>
+        <tab :label='title[index]' :index="(index+1).toString()" v-for="(item, index) in djsData" :key="index">
+            <div class="panel hotsongs on">
+              <ul class="list">
+                <li class="song url" v-for="(dj, index) in item.djRadios" :key="index">
+                  <div class="poster">
+                    <img :src="dj.picUrl" alt="">
+                  </div>
+                  <div class="info">
+                    <div class="name">{{ dj.desc }}</div>
+                    <div class="author">{{ dj.name }}</div>
+                  </div>
+                </li>
+              </ul>
+              <router-link :to="{name:'DJMore',params:{id:title[index].id}}" tag="div" class="more-songs">加载更多</router-link>
+            </div>
         </tab>
     </tabs>
 </div>
@@ -16,22 +23,33 @@
 </template>
 
 <script>
+import axios from '@/utils/request'
 export default {
   name: 'MusicTabs',
   data () {
     return {
       // 把 defaultActiveIndex 变成动态的值
-      defaultActiveIndex: '1'
+      defaultActiveIndex: '1',
+      djsData: [],
+      title: ['情感故事', '情感调频', '娱乐影视']
     }
   },
   mounted () {
     // 三条请求都成功后再执行
     // 合并网络请求
-    this.$api.getDjCatetory({
-      type: 2
-    }).then(res => {
-      console.log(res)
-    })
+    const getDj2 = () => {
+      return this.$api.getDjCatetory({ type: 2 })
+    }
+    const getDj3 = () => {
+      return this.$api.getDjCatetory({ type: 3 })
+    }
+    const getDj5 = () => {
+      return this.$api.getDjCatetory({ type: 5 })
+    }
+    axios.all([getDj2(), getDj3(), getDj5()]).then(axios.spread((dj2, dj3, dj5) => {
+      this.djsData.push(dj2, dj3, dj5)
+      console.log(this.djsData)
+    }))
   },
   methods: {
     updateIndex (index) {
