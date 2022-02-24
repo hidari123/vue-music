@@ -1,40 +1,39 @@
-<!--
-    智能组件 获取数据
--->
 <template>
-  <div>
-      <music-list-view type='1' title="推荐歌单" :musiclist="recommend"/>
-      <music-list-view type='4' title="推荐歌曲" :musiclist="music"/>
-
-  </div>
+    <div>
+        <div>
+            <MusicListView title="推荐歌单" :musiclist="recommend"/>
+            <MusicRecommend title="推荐歌曲" :recommend="musiclist"/>
+        </div>
+    </div>
 </template>
 
 <script>
-import MusicListView from './MusicListView.vue'
+import MusicListView from './MusicListView'
+import MusicRecommend from './MusicRecommend'
+
 export default {
   name: 'MusicList',
   data () {
     return {
-      music: [],
-      recommend: []
+      recommend: [],
+      musiclist: []
     }
   },
-  components: {
-    MusicListView
-  },
-  created () {
+  mounted () {
     this.$api.getRecommend().then(res => {
       this.recommend = res.recommend
-      console.log(this.recommend)
     })
+
     this.$api.getMusic().then(res => {
-      this.music = res.result
-      console.log(this.music)
+      this.musiclist = res.result
     })
+  },
+  components: {
+    MusicListView,
+    MusicRecommend
   }
 }
 </script>
 
 <style>
-
 </style>

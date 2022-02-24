@@ -70,12 +70,17 @@ export default {
           offset: offset // 加载的条数偏移量
         })
         .then((res) => {
-          console.log(res)
-          // 设置偏移量
-          // concat 视图不会更新 用 push
-          // 数组里面加数组 ...展开运算符
-          this.moreDatas.push(...res.song_list)
-          this.offset += 15
+          // 如果没有更多数据 res.song_list
+          if (res.song_list) {
+            console.log(res)
+            // 设置偏移量
+            // concat 视图不会更新 用 push
+            // 数组里面加数组 ...展开运算符
+            this.moreDatas.push(...res.song_list)
+            this.offset += 15
+          } else {
+            this.$ref.loadmore.innerHTML = '没有更多数据'
+          }
         })
     },
     // 多余隐藏

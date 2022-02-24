@@ -10,17 +10,20 @@
           </div>
           <!-- 只有中间的需要边距 对3取余 不等于1的 去掉边距 -->
           <div class="list clearfix">
-              <div class="item"
-              :class="{ 'clear-padding': index%3 !== 1 }"
-              v-for="(item,index) in musiclist.slice(0,6)"
-              :key="index"
+              <router-link
+                tag='div'
+                :to="`/details/${item.id}`"
+                class="item"
+                :class="{ 'clear-padding': index%3 !== 1 }"
+                v-for="(item,index) in musiclist.slice(0,6)"
+                :key="index"
               >
                   <div class="img-warpper">
                     <img :src="item.picUrl" alt />
                   </div>
                   <div class="main">{{ cutString(item.name) }}</div>
                   <div class="gary">{{ cutString(item.id) }}</div>
-              </div>
+              </router-link>
           </div>
       </div>
   </div>
