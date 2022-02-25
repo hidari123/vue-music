@@ -1,7 +1,7 @@
 <template>
 <div class="tabs">
     <tabs :defaultActiveIndex='defaultActiveIndex' @callback='updateIndex'>
-        <tab :label='title[index]' :index="(index+1).toString()" v-for="(item, index) in djsData" :key="index">
+        <tab :label='title[index].title' :index="(index+1).toString()" v-for="(item, index) in djsData" :key="index">
             <div class="panel hotsongs on">
               <ul class="list">
                 <li class="song url" v-for="(dj, index) in item.djRadios" :key="index">
@@ -31,7 +31,19 @@ export default {
       // 把 defaultActiveIndex 变成动态的值
       defaultActiveIndex: '1',
       djsData: [],
-      title: ['情感故事', '情感调频', '娱乐影视']
+      title: [
+        {
+          id: 2,
+          title: '情感故事'
+        },
+        {
+          id: 3,
+          title: '情感调频'
+        },
+        {
+          id: 5,
+          title: '娱乐影视'
+        }]
     }
   },
   mounted () {

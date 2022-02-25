@@ -53,7 +53,7 @@ const routes = [
   {
     path: '/dj/:id',
     name: 'DJMore',
-    component: () => import('../views/Home/DJMore.vue')
+    component: () => import('../views/home/DJMore.vue')
   }
 ]
 
