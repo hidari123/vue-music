@@ -7,7 +7,7 @@
     https://github.com/hai-27/vue-store
 
 ## 接口文档
-···
+```
 网易音乐参考地址：https://binaryify.github.io/NeteaseCloudMusicApi/#/
 1.推荐歌单：http://iwenwiki.com:3000/recommend/resource
 2.推荐歌曲：http://iwenwiki.com:3000/personalized/newsong
@@ -18,10 +18,10 @@ order参考值：hot new
 6.电台分类：http://iwenwiki.com:3000/dj/recommend/type?type=2
 7.歌词：http://iwenwiki.com:3000/lyric?id=1462342189
 8.搜索：http://iwenwiki.com:3000/search?keywords=%E5%B1%B1%E4%B8%98
-···
+```
 
 ###  vscode eslint 配置
-···json
+```json
 {
     // vscode默认启用了根据文件类型自动设置tabsize的选项
     "editor.detectIndentation": false,
@@ -87,4 +87,4 @@ order参考值：hot new
     },
     "diffEditor.ignoreTrimWhitespace": false // 两个选择器中是否换行
 }
-···
+```
