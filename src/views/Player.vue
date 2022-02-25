@@ -31,12 +31,16 @@
 </template>
 
 <script>
+import LRC from './LRC.vue'
 export default {
   data () {
     return {
       playerData: {},
       currentTime: 0
     }
+  },
+  components: {
+    LRC
   },
   mounted () {
     this.$api.getPlayer({
@@ -46,6 +50,26 @@ export default {
         this.playerData = res.data[0]
         this.addEventHandle()
       })
+  },
+  beforeDestroy () {
+    this.removeEventHandle()
+  },
+  methods: {
+    // 获取音乐播放时间
+    addEventHandle () {
+      // addEventListener 在音频/视频播放位置发生改变时触发
+      this.$refs.player.addEventListener('timeupdate', this.currentTimeHandle)
+    },
+    removeEventHandle () {
+      this.$refs.player.removeEventListener('timeupdate', this.currentTimeHandle)
+    },
+    currentTimeHandle () {
+      // 获取音乐正在播放的时间节点
+      // console.log(this.$refs.player.currentTime)
+      // 获取音乐总时长
+      // console.log(this.$refs.player.duration)
+      this.currentTime = this.$refs.player.currentTime
+    }
   },
   computed: {
     getUrl () {
